@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using App.Common.Config;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using System.Security.Claims;
+using TShirtShop.DataAccess;
+using TShirtShop.Server.Infrastructure;
+using TShirtShop.Server.Logging;
+using TShirtShop.Server.Security;
+using TShirtShop.Shared;
+using Unity;
 
 namespace TShittShop.Server
 {
@@ -22,10 +27,62 @@ namespace TShittShop.Server
 
         public IConfiguration Configuration { get; }
 
+        public IUnityContainer Container { get; set; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddOptions();
+            services.Configure<ConnectionStringOptions>(Configuration.GetSection(ConnectionStringOptions.Section));
+            services.Configure<TokenOptions>(Configuration.GetSection(TokenOptions.Section));
+
+            // Allow cors
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().Build());
+                options.DefaultPolicyName = "AllowAll";
+            });
+
+            services.AddHttpContextAccessor();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+               .AddJwtBearer(options =>
+               {
+                   var tokenProvider = Container.Resolve<JwtTokenProvider>();
+                   options.TokenValidationParameters = tokenProvider.BearerOptions.TokenValidationParameters;
+
+               });
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+                config.Filters.Add(typeof(ValidateModelStateAttribute));
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+            .AddControllersAsServices();
+        }
+
+        public void ConfigureContainer(IUnityContainer container)
+        {
+            Container = container;
+
+            container.RegisterSingleton<ConfigOptions<ConnectionStringOptions>>();
+            container.RegisterSingleton<ConfigOptions<TokenOptions>>();
+
+            container.RegisterSingleton<ISecurityKeyProvider, RsaSecurityKeyProvider>();
+            container.RegisterSingleton<JwtTokenProvider>();
+
+            container.RegisterType<IAppContext, TShirtShopContext>(new PerRequestLifetimeManager(container.Resolve<IHttpContextAccessor>()));
+
+            container.RegisterFactory<IAppIdentity>(s => new JwtTokenIdentity(s.Resolve<IHttpContextAccessor>().HttpContext.User.Identity as ClaimsIdentity));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,11 +94,13 @@ namespace TShittShop.Server
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+                app.ConfigureCustomExceptionMiddleware();
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("AllowAll");
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

@@ -8,10 +8,14 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Unity.Microsoft.DependencyInjection" Version="5.9.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\App.Common.DataAccess\App.Common.DataAccess.csproj" />
+    <ProjectReference Include="..\App.Common\App.Common.csproj" />
+    <ProjectReference Include="..\TShirtShop.DataAccess\TShirtShop.DataAccess.csproj" />
+    <ProjectReference Include="..\TShirtShop.Shared\TShirtShop.Shared.csproj" />
   </ItemGroup>
 
 </Project>

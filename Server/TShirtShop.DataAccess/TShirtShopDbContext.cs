@@ -25,6 +25,8 @@ namespace TShirtShop.DataAccess
             {
                 entity.ToTable("attribute");
 
+                entity.HasKey(e => e.AttributeId);
+
                 entity.Property(e => e.AttributeId).HasColumnName("attribute_id");
 
                 entity.Property(e => e.Name)
@@ -420,7 +422,7 @@ namespace TShirtShop.DataAccess
 
                 entity.Property(e => e.ShippingRegionId).HasColumnName("shipping_region_id");
 
-                entity.Property(e => e.ShippingRegion1)
+                entity.Property(e => e.ShippingRegionName)
                     .IsRequired()
                     .HasColumnName("shipping_region")
                     .HasMaxLength(100)

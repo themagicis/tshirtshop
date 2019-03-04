@@ -1,20 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TShirtShop.DataAccess;
+using TShirtShop.DataAccess.Models;
 
 namespace TShittShop.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class ValuesController : ControllerBase
     {
+        private readonly IAppContext ctx;
+
+        public ValuesController(IAppContext ctx)
+        {
+            this.ctx = ctx;
+        }
+
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<Attributte>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return ctx.Get<Attributte>().All.ToList();
         }
 
         // GET api/values/5
