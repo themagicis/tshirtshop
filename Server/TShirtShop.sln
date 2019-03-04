@@ -13,6 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.BulkExtensions", "EF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.MemoryJoin", "EFCore.MemoryJoin\EFCore.MemoryJoin.csproj", "{F946819A-EF78-4E6D-8712-55E465A16409}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TShittShop.Server", "TShittShop.Server\TShittShop.Server.csproj", "{6BB3C35F-668C-4602-9363-BB8ACCCD0CE8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TShirtShop.Services", "TShirtShop.Services\TShirtShop.Services.csproj", "{B03FD1C0-2CCF-4F8E-BC03-3BBBF127AEB4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TShirtShop.Services.Tests", "TShirtShop.Services.Tests\TShirtShop.Services.Tests.csproj", "{AE2EA432-1540-407A-9FCA-8F5F1B401735}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TShirtShop.DataAccess", "TShirtShop.DataAccess\TShirtShop.DataAccess.csproj", "{98AE8C3C-543C-49DF-BBC6-9CA44010EF5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +69,38 @@ Global
 		{F946819A-EF78-4E6D-8712-55E465A16409}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F946819A-EF78-4E6D-8712-55E465A16409}.Release|x64.ActiveCfg = Release|x64
 		{F946819A-EF78-4E6D-8712-55E465A16409}.Release|x64.Build.0 = Release|x64
+		{6BB3C35F-668C-4602-9363-BB8ACCCD0CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB3C35F-668C-4602-9363-BB8ACCCD0CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB3C35F-668C-4602-9363-BB8ACCCD0CE8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6BB3C35F-668C-4602-9363-BB8ACCCD0CE8}.Debug|x64.Build.0 = Debug|Any CPU
+		{6BB3C35F-668C-4602-9363-BB8ACCCD0CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BB3C35F-668C-4602-9363-BB8ACCCD0CE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB3C35F-668C-4602-9363-BB8ACCCD0CE8}.Release|x64.ActiveCfg = Release|Any CPU
+		{6BB3C35F-668C-4602-9363-BB8ACCCD0CE8}.Release|x64.Build.0 = Release|Any CPU
+		{B03FD1C0-2CCF-4F8E-BC03-3BBBF127AEB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B03FD1C0-2CCF-4F8E-BC03-3BBBF127AEB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B03FD1C0-2CCF-4F8E-BC03-3BBBF127AEB4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B03FD1C0-2CCF-4F8E-BC03-3BBBF127AEB4}.Debug|x64.Build.0 = Debug|Any CPU
+		{B03FD1C0-2CCF-4F8E-BC03-3BBBF127AEB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B03FD1C0-2CCF-4F8E-BC03-3BBBF127AEB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B03FD1C0-2CCF-4F8E-BC03-3BBBF127AEB4}.Release|x64.ActiveCfg = Release|Any CPU
+		{B03FD1C0-2CCF-4F8E-BC03-3BBBF127AEB4}.Release|x64.Build.0 = Release|Any CPU
+		{AE2EA432-1540-407A-9FCA-8F5F1B401735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE2EA432-1540-407A-9FCA-8F5F1B401735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE2EA432-1540-407A-9FCA-8F5F1B401735}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AE2EA432-1540-407A-9FCA-8F5F1B401735}.Debug|x64.Build.0 = Debug|Any CPU
+		{AE2EA432-1540-407A-9FCA-8F5F1B401735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE2EA432-1540-407A-9FCA-8F5F1B401735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE2EA432-1540-407A-9FCA-8F5F1B401735}.Release|x64.ActiveCfg = Release|Any CPU
+		{AE2EA432-1540-407A-9FCA-8F5F1B401735}.Release|x64.Build.0 = Release|Any CPU
+		{98AE8C3C-543C-49DF-BBC6-9CA44010EF5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98AE8C3C-543C-49DF-BBC6-9CA44010EF5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98AE8C3C-543C-49DF-BBC6-9CA44010EF5F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{98AE8C3C-543C-49DF-BBC6-9CA44010EF5F}.Debug|x64.Build.0 = Debug|Any CPU
+		{98AE8C3C-543C-49DF-BBC6-9CA44010EF5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98AE8C3C-543C-49DF-BBC6-9CA44010EF5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98AE8C3C-543C-49DF-BBC6-9CA44010EF5F}.Release|x64.ActiveCfg = Release|Any CPU
+		{98AE8C3C-543C-49DF-BBC6-9CA44010EF5F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
