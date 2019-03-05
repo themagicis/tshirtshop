@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\App.Common.DataAccess\App.Common.DataAccess.csproj" />
     <ProjectReference Include="..\App.Common\App.Common.csproj" />
+    <ProjectReference Include="..\App.Email\App.Email.csproj" />
     <ProjectReference Include="..\TShirtShop.DataAccess\TShirtShop.DataAccess.csproj" />
     <ProjectReference Include="..\TShirtShop.Shared\TShirtShop.Shared.csproj" />
   </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using App.Common.Config;
+using App.Email;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -35,6 +36,7 @@ namespace TShittShop.Server
             services.AddOptions();
             services.Configure<ConnectionStringOptions>(Configuration.GetSection(ConnectionStringOptions.Section));
             services.Configure<TokenOptions>(Configuration.GetSection(TokenOptions.Section));
+            services.Configure<SendGridOptions>(Configuration.GetSection(SendGridOptions.Section));
 
             // Allow cors
             services.AddCors(options =>
@@ -76,6 +78,7 @@ namespace TShittShop.Server
 
             container.RegisterSingleton<ConfigOptions<ConnectionStringOptions>>();
             container.RegisterSingleton<ConfigOptions<TokenOptions>>();
+            container.RegisterSingleton<ConfigOptions<SendGridOptions>>();
 
             container.RegisterSingleton<ISecurityKeyProvider, RsaSecurityKeyProvider>();
             container.RegisterSingleton<JwtTokenProvider>();
