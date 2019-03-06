@@ -14,6 +14,9 @@ using TShirtShop.DataAccess;
 using TShirtShop.Server.Infrastructure;
 using TShirtShop.Server.Logging;
 using TShirtShop.Server.Security;
+using TShirtShop.Services.Attributes;
+using TShirtShop.Services.Categories;
+using TShirtShop.Services.Departments;
 using TShirtShop.Shared;
 using Unity;
 
@@ -86,6 +89,10 @@ namespace TShittShop.Server
             container.RegisterType<IAppContext, TShirtShopContext>(new PerRequestLifetimeManager(container.Resolve<IHttpContextAccessor>()));
 
             container.RegisterFactory<IAppIdentity>(s => new JwtTokenIdentity(s.Resolve<IHttpContextAccessor>().HttpContext.User.Identity as ClaimsIdentity));
+
+            container.RegisterType<IAttributesService, AttributesService>();
+            container.RegisterType<ICategoriesService, CategoriesService>();
+            container.RegisterType<IDepartmentsService, DepartmentsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
