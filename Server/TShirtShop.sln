@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.BulkExtensions", "EF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.MemoryJoin", "EFCore.MemoryJoin\EFCore.MemoryJoin.csproj", "{F946819A-EF78-4E6D-8712-55E465A16409}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TShittShop.Server", "TShittShop.Server\TShittShop.Server.csproj", "{6BB3C35F-668C-4602-9363-BB8ACCCD0CE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TShirtShop.Server", "TShittShop.Server\TShirtShop.Server.csproj", "{6BB3C35F-668C-4602-9363-BB8ACCCD0CE8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TShirtShop.Services", "TShirtShop.Services\TShirtShop.Services.csproj", "{B03FD1C0-2CCF-4F8E-BC03-3BBBF127AEB4}"
 EndProject
@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TShirtShop.Services.Tests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TShirtShop.DataAccess", "TShirtShop.DataAccess\TShirtShop.DataAccess.csproj", "{98AE8C3C-543C-49DF-BBC6-9CA44010EF5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TShirtShop.Shared", "TShirtShop.Shared\TShirtShop.Shared.csproj", "{B53A1C28-C0AF-404D-95F7-0B4B0CD2F56D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TShirtShop.Shared", "TShirtShop.Shared\TShirtShop.Shared.csproj", "{B53A1C28-C0AF-404D-95F7-0B4B0CD2F56D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
