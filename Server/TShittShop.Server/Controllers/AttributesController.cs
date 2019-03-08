@@ -3,19 +3,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TShirtShop.Services.Attributes;
+using TShirtShop.Services.AttributeValues;
 
 namespace TShittShop.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    [AllowAnonymous]
+    //[Authorize(Roles = "Admin")]
     public class AttributesController : ControllerBase
     {
         private readonly IAttributesService svc;
+        private readonly IAttributeValuesService valuesSvc;
 
-        public AttributesController(IAttributesService service)
+        public AttributesController(IAttributesService service, IAttributeValuesService valuesService)
         {
             svc = service;
+            valuesSvc = valuesService;
         }
 
         [HttpGet]
@@ -25,16 +29,11 @@ namespace TShittShop.Server.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<AttributeDto>> Get(int id)
+        [HttpGet("{name}/values")]
+        public async Task<ActionResult<IEnumerable<AttributeDto>>> Get(string name)
         {
-            var result = await svc.GetAsync(id);
-            if (result.Succeeded)
-            {
-                return Ok(result.Data);
-            }
-
-            return BadRequest(result.Errors);
+            var result = await valuesSvc.GetAllAsync(name);
+            return Ok(result);
         }
 
         [HttpPost]

@@ -45,13 +45,14 @@ namespace TShirtShop.Services.Categories
             return ServiceResult.Failed(new ResultError(ErrorMessages.NoSuchCategory));
         }
 
-        public async Task<IEnumerable<CategoryDto>> GetAllAsync()
+        public async Task<IEnumerable<CategoryDto>> GetAllAsync(string departmentName)
         {
-            var all = await ctx.Get<Category>().All.ToListAsync();
+            var all = await ctx.Get<Category>().All.Where(a => a.Department.Name == departmentName).ToListAsync();
             var retval = all.Select(e => new CategoryDto
             {
                 Id = e.CategoryId,
                 Name = e.Name,
+                Description = e.Description
             }).ToList();
 
             return retval;
@@ -81,6 +82,7 @@ namespace TShirtShop.Services.Categories
             if (entity != null)
             {
                 entity.Name = item.Name;
+                entity.Description = item.Description;
                 await ctx.CommitAsync();
 
                 return ServiceResult.Success();

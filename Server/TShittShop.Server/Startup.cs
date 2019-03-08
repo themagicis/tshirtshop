@@ -15,8 +15,10 @@ using TShirtShop.Server.Infrastructure;
 using TShirtShop.Server.Logging;
 using TShirtShop.Server.Security;
 using TShirtShop.Services.Attributes;
+using TShirtShop.Services.AttributeValues;
 using TShirtShop.Services.Categories;
 using TShirtShop.Services.Departments;
+using TShirtShop.Services.Users;
 using TShirtShop.Shared;
 using Unity;
 
@@ -90,7 +92,9 @@ namespace TShittShop.Server
 
             container.RegisterFactory<IAppIdentity>(s => new JwtTokenIdentity(s.Resolve<IHttpContextAccessor>().HttpContext.User.Identity as ClaimsIdentity));
 
+            container.RegisterType<IUsersService, UsersService>();
             container.RegisterType<IAttributesService, AttributesService>();
+            container.RegisterType<IAttributeValuesService, AttributeValuesService>();
             container.RegisterType<ICategoriesService, CategoriesService>();
             container.RegisterType<IDepartmentsService, DepartmentsService>();
         }
@@ -104,11 +108,11 @@ namespace TShittShop.Server
             }
             else
             {
-                app.UseHsts();
+                //app.UseHsts();
                 app.ConfigureCustomExceptionMiddleware();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseCors("AllowAll");
             app.UseAuthentication();
             app.UseMvc();

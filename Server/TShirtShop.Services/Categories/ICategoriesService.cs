@@ -6,7 +6,7 @@ namespace TShirtShop.Services.Categories
 {
     public interface ICategoriesService
     {
-        Task<IEnumerable<CategoryDto>> GetAllAsync();
+        Task<IEnumerable<CategoryDto>> GetAllAsync(string departmentName);
         Task<ServiceResult<CategoryDto>> GetAsync(int id);
         Task<ServiceResult> CreateAsync(CategoryDto item);
         Task<ServiceResult> UpdateAsync(int id, CategoryDto item);

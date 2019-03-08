@@ -2,20 +2,24 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TShirtShop.Services.Categories;
 using TShirtShop.Services.Departments;
 
 namespace TShittShop.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    [AllowAnonymous]
+    //[Authorize(Roles = "Admin")]
     public class DepartmentsController : ControllerBase
     {
         private readonly IDepartmentsService svc;
+        private readonly ICategoriesService categoriesSvc;
 
-        public DepartmentsController(IDepartmentsService service)
+        public DepartmentsController(IDepartmentsService service, ICategoriesService categoriesService)
         {
             svc = service;
+            categoriesSvc = categoriesService;
         }
 
         [HttpGet]
@@ -25,16 +29,11 @@ namespace TShittShop.Server.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<DepartmentDto>> Get(int id)
+        [HttpGet("{name}/categories")]
+        public async Task<ActionResult<IEnumerable<CategoryDto>>> Get(string name)
         {
-            var result = await svc.GetAsync(id);
-            if (result.Succeeded)
-            {
-                return Ok(result.Data);
-            }
-
-            return BadRequest(result.Errors);
+            var result = await categoriesSvc.GetAllAsync(name);
+            return Ok(result);
         }
 
         [HttpPost]

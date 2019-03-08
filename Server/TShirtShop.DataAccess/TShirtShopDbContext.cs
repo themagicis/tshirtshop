@@ -483,6 +483,11 @@ namespace TShirtShop.DataAccess
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("user");
+            });
         }
     }
 }

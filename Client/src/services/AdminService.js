@@ -3,8 +3,20 @@ class AdminService {
         this.http = http;
     }
 
-    getReports(){
-        return this.http.doGet('admin/getReports');
+    getAttributes(){
+        return this.http.doGet('attributes');
+    }
+
+    getAttributeValues(name){
+        return this.http.doGet(`attributes/${name}/values`);
+    }
+
+    getDepartments(){
+        return this.http.doGet('departments');
+    }
+
+    getCategories(name){
+        return this.http.doGet(`departments/${name}/categories`);
     }
 }
 

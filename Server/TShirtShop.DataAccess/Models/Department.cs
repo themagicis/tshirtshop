@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace TShirtShop.DataAccess.Models
 {
@@ -8,5 +7,7 @@ namespace TShirtShop.DataAccess.Models
         public int DepartmentId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        public ICollection<Category> Categories { get; set; }
     }
 }

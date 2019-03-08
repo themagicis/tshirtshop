@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace TShirtShop.DataAccess.Models
+﻿namespace TShirtShop.DataAccess.Models
 {
     public partial class Customer
     {

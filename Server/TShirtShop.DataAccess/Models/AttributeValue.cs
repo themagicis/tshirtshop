@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace TShirtShop.DataAccess.Models
 {
@@ -7,6 +6,7 @@ namespace TShirtShop.DataAccess.Models
     {
         public int AttributeValueId { get; set; }
         public int AttributeId { get; set; }
+        public Attributte Attribute { get; set; }
         public string Value { get; set; }
     }
 }

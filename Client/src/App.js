@@ -47,7 +47,7 @@ class App extends Component {
             <Switch>
               <PublicRoute exact path="/" component={Home} />
               
-              <AdminRoute path="/admin" component={AdminPanel} user={this.userStore} />
+              <PublicRoute path="/admin" component={AdminPanel} user={this.userStore} />
 
               <PublicRoute component={NotFound} />
             </Switch>
